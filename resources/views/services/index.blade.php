@@ -1,81 +1,82 @@
 @extends('layouts.app')
 
-@section('title', 'Our Services - StormVest Solar Energy')
+@section('title', ($service['name'] ?? 'Service Details') . ' - StormVest Solar Energy')
 
 @section('content')
 
     {{-- HERO --}}
-    <section class="relative h-[420px] md:h-[480px] flex flex-col justify-end px-10 lg:px-16 pb-14 overflow-hidden">
-        <img src="{{ asset('images/services/services-hero.jpg') }}" alt="Our Services" class="absolute inset-0 w-full h-full object-cover">
+    <section class="relative h-[40vh] min-h-[300px] flex flex-col justify-end items-center text-center px-10 lg:px-16 pb-8 overflow-hidden">
+        <img src="{{ asset('images/services/service-detail-hero.jpg') }}" alt="{{ $service['name'] ?? 'Service Details' }}" class="absolute inset-0 w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative z-10 max-w-6xl mx-auto w-full text-center">
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Our Services</h1>
-            <p class="text-white text-base">
-                <a href="/" class="hover:text-[#FBD331]">Home</a> / <span class="text-[#AFEB63]">Our Services</span>
+        <div class="relative z-10 max-w-6xl mx-auto w-full">
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-2">{{ $service['name'] ?? 'Energy Consulting' }}.</h1>
+            <p class="text-white text-xs md:text-sm">
+                <a href="/" class="hover:text-[#FBD331]">Home</a> / <span class="text-[#AFEB63]">Service Details</span>
             </p>
         </div>
     </section>
 
-    {{-- INTRO --}}
+    {{-- SERVICE DETAILS CONTENT (Sticky Smaller Image / Scrolling Right Content) --}}
     <section class="px-10 lg:px-16 py-16 max-w-6xl mx-auto">
-        <p class="text-[#AFEB63] text-base font-medium mb-4">// What We Do</p>
-        <h2 class="text-4xl md:text-5xl font-bold max-w-3xl leading-tight text-[#1D1D1D]">
-            End-to-end solar infrastructure services, from first audit to lifetime monitoring.
-        </h2>
-    </section>
-
-    {{-- SERVICES GRID --}}
-    <section class="px-10 lg:px-16 max-w-6xl mx-auto pb-24">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            @php
-                // TEMP: hardcoded service list until this is wired to a Service model/DB table.
-                $services = [
-                    [
-                        'slug'  => 'energy-consulting',
-                        'name'  => 'Energy Consulting',
-                        'blurb' => 'Load auditing, ROI modeling, and regulatory navigation before you commit to infrastructure.',
-                    ],
-                    [
-                        'slug'  => 'epc-project-delivery',
-                        'name'  => 'EPC Project Delivery',
-                        'blurb' => 'Full engineering, procurement, and construction delivery from design to commissioning.',
-                    ],
-                    [
-                        'slug'  => 'battery-storage-bess',
-                        'name'  => 'Battery Storage (BESS)',
-                        'blurb' => 'Reliable energy storage systems that keep power flowing when the grid can\'t.',
-                    ],
-                    [
-                        'slug'  => 'active-monitoring',
-                        'name'  => 'Active Monitoring',
-                        'blurb' => '24/7 system monitoring and maintenance to guarantee performance over the project lifetime.',
-                    ],
-                ];
-            @endphp
-
-            @foreach ($services as $service)
-                <a href="/services/{{ $service['slug'] }}" class="group relative rounded-2xl bg-[#0504AA] p-8 flex flex-col justify-between min-h-[220px] overflow-hidden">
-                    <div class="w-10 h-10 rounded-lg bg-[#AFEB63] mb-8"></div>
-                    <div>
-                        <h6 class="text-white font-semibold text-lg mb-2">{{ $service['name'] }}</h6>
-                        <p class="text-gray-200 text-sm leading-relaxed">{{ $service['blurb'] }}</p>
-                    </div>
+        <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+            
+            {{-- Left Side: Sticky Smaller Image & Button Container --}}
+            <div class="w-full lg:w-[40%] lg:sticky lg:top-28">
+                <div class="rounded-2xl overflow-hidden w-full aspect-square bg-gray-200 shadow-sm">
+                    <img src="{{ asset('images/services/service-detail-content.jpg') }}" alt="{{ $service['name'] ?? 'Service Details' }}" class="w-full h-[60px]object-cover">
+                </div>
+                <a href="/contact" class="inline-flex items-center gap-2 mt-6 bg-[#FBD331] hover:bg-[#1D1D1D] hover:text-white text-black font-semibold text-sm px-6 py-3 rounded-full transition-colors">
+                    Get This Service <span>↗</span>
                 </a>
-            @endforeach
+            </div>
+            
+            {{-- Right Side: Scrolling Detailed Content --}}
+            <div class="w-full lg:w-[60%] space-y-6">
+                <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                    Before committing to solar infrastructure, you need to know exactly what you need, what it will cost, and what you will get back. Our consulting service gives you that clarity with bankable precision.
+                </p>
+                <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                    We audit your facility's actual load patterns, model your financial returns with hard numbers, and guide you through the regulatory environment so nothing delays your project.
+                </p>
+
+                <h3 class="text-xl md:text-2xl font-bold text-[#1D1D1D] pt-6 border-t border-gray-100">What's Included:</h3>
+
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-lg md:text-xl font-semibold text-[#1D1D1D]">01 - Load Auditing</h4>
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed mt-1">
+                            Detailed analysis of your consumption patterns to define actual power requirements and identify waste reduction opportunities.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg md:text-xl font-semibold text-[#1D1D1D]">02 - ROI Modeling</h4>
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed mt-1">
+                            Financial projection of payback period, IRR, and LCOE to give you and your investors a bankable project case.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg md:text-xl font-semibold text-[#1D1D1D]">03 - Regulatory Navigation</h4>
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed mt-1">
+                            We handle local grid codes, net-metering policies, and carbon credit eligibility so compliance is never a bottleneck.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
 
-    {{-- CTA (with real background image) --}}
-    <section class="relative text-center py-32 px-10 lg:px-16 overflow-hidden">
+    {{-- CTA --}}
+    <section class="relative text-center py-20 px-10 lg:px-16 overflow-hidden">
         <img src="{{ asset('images/about-cta-bg.avif') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 bg-[#1D1D1D]/60"></div>
-        <div class="relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold max-w-2xl mx-auto mb-8 text-white">
+        <div class="absolute inset-0 bg-[#1D1D1D]/70"></div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-normal mb-6 text-white leading-snug">
                 Join us on our journey to a cleaner, greener, and more sustainable world.
             </h2>
-            <a href="/contact" class="inline-block bg-[#FBD331] hover:bg-[#AFEB63] text-black font-semibold text-lg px-8 py-4 rounded-full transition-colors">
+            <a href="/contact" class="inline-block bg-[#FBD331] hover:bg-[#AFEB63] text-black font-semibold text-sm md:text-base px-8 py-4 rounded-full transition-colors">
                 Contact Us
             </a>
         </div>

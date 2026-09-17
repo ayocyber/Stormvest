@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- HERO --}}
-    <section class="relative h-[500px] md:h-[560px] flex flex-col justify-end px-10 lg:px-16 pb-14 overflow-hidden">
+      <section class="relative h-[45vh] min-h-[380px] md:min-h-[450px] flex flex-col justify-end items-center text-center px-10 lg:px-16 pb-12 overflow-hidden">
         <img src="{{ asset('images/services/energy-consulting-hero.webp') }}" alt="Active Monitoring" class="absolute inset-0 w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/60"></div>
         <div class="relative z-10 max-w-6xl mx-auto w-full text-center">
@@ -16,20 +16,24 @@
         </div>
     </section>
 
-    {{-- SERVICE DETAILS --}}
-    <section class="px-10 lg:px-16 py-20 max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-start">
-        {{-- Image with "Get This Service" pill button --}}
-        <div>
-            <div class="relative rounded-2xl overflow-hidden aspect-[2/3]">
-                <img src="{{ asset('images/services/active-monitoring-main.jpg') }}" alt="Active Monitoring" class="absolute inset-0 w-full h-full object-cover">
+    {{-- SERVICE DETAILS (With Sticky Image Scroll Effect) --}}
+    <section class="px-10 lg:px-16 py-20 max-w-6xl mx-auto grid lg:grid-cols-12 gap-14 items-start">
+        
+        {{-- Sticky Left Column (Image & Button stay locked until section ends) --}}
+        <div class="lg:col-span-5 lg:sticky lg:top-28">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm bg-gray-100">
+                <img src="{{ asset('images/services/new.webp') }}" alt="Active Monitoring" class="absolute inset-0 w-full h-full object-cover">
             </div>
-            <a href="/contact" class="inline-block mt-6 bg-[#FBD331] hover:bg-[#1D1D1D] hover:text-white text-black font-semibold text-base px-7 py-3.5 rounded-full transition-colors">
-                Get This Service ↗
-            </a>
+            <a href="/contact" class="inline-flex items-center justify-center gap-2 mt-6 bg-[#FBD331] hover:bg-[#1D1D1D] hover:text-white text-black font-semibold text-base px-7 py-3.5 rounded-full transition-colors">
+    Get This Service 
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+    </svg>
+</a>
         </div>
 
-        {{-- Content --}}
-        <div class="space-y-6">
+        {{-- Scrolling Right Column (Content scrolls past the sticky image) --}}
+        <div class="lg:col-span-7 space-y-6">
             <p class="text-lg text-gray-600 leading-relaxed">
                 A solar system is a long-term asset. What happens after installation determines whether that asset delivers its promised returns. Our monitoring service keeps your system performing at modeled output, year after year.
             </p>
@@ -112,17 +116,17 @@
     </section>
 
     {{-- CTA (with real background image) --}}
-    <section class="relative text-center py-32 px-10 lg:px-16 overflow-hidden">
-        <img src="{{ asset('images/about-cta-bg.avif') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 bg-[#1D1D1D]/60"></div>
-        <div class="relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold max-w-2xl mx-auto mb-8 text-white">
-                Join us on our journey to a cleaner, greener, and more sustainable world.
-            </h2>
-            <a href="/contact" class="inline-block bg-[#FBD331] hover:bg-[#AFEB63] text-black font-semibold text-lg px-8 py-4 rounded-full transition-colors">
-                Contact Us
-            </a>
-        </div>
-    </section>
+<section class="relative text-center py-24 px-6 md:px-16 overflow-hidden">
+    <img src="{{ asset('images/about-cta-bg.avif') }}" alt="" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-[#1D1D1D]/70"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-normal mb-6 text-white leading-snug">
+            Join us on our journey to a cleaner, greener, and more sustainable world.
+        </h2>
+        <a href="/contact" class="inline-block bg-[#FBD331] hover:bg-[#AFEB63] text-black font-semibold text-lg px-8 py-4 rounded-full transition-colors">
+            Contact Us
+        </a>
+    </div>
+</section>
 
 @endsection
